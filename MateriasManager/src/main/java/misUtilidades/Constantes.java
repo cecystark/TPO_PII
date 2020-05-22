@@ -1,4 +1,4 @@
-package ar.edu.uade.utils;
+package misUtilidades;
 
 public class Constantes {
 	

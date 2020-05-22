@@ -1,13 +1,16 @@
-package ar.edu.uade.fileReader;
+package misAplicaciones;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-import ar.edu.uade.utils.Constantes;
+import misApis.DiccionarioMultipleTDA;
+import misMetodos.MetodosDiccionario;
+import misMetodos.MetodosFuncionales;
+import misUtilidades.Constantes;
 
-public class Archivo {
+public class LectorDeArchivo {
 	
 	private static FileReader fr;
 	private static BufferedReader bf;
@@ -20,7 +23,7 @@ public class Archivo {
     private static String carrera;
     private static String materia;
 
-	public static void parsearDatos() {
+	public static void cargarDatos(DiccionarioMultipleTDA registroDeMaterias) {
 
     	String fileS = Constantes.RUTA_ARCHIVO;
     	
@@ -41,11 +44,15 @@ public class Archivo {
 
 					         nro_carrera = data[Constantes.NRO_CARRERA];
 					         cod_materia = data[Constantes.COD_MATERIA];
-					         materia_precedente = data[Constantes.MATERIA];
-					         carrera = data[Constantes.MATERIA_PRECEDENTE];
-							 materia = data[Constantes.NRO_CARRERA];
+					         materia_precedente = data[Constantes.MATERIA_PRECEDENTE];
+					         carrera = data[Constantes.CARRERA];
+							 materia = data[Constantes.MATERIA];
+
+							MetodosFuncionales.registrarMateria(registroDeMaterias, nro_carrera, cod_materia);
 
 					}
+					MetodosDiccionario.imprimirDiccionario(registroDeMaterias);
+
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
